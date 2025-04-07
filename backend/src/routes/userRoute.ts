@@ -6,7 +6,7 @@ import  zod from  "zod"
 import jwt from "jsonwebtoken"
 import  User  from "../dbSchema/db"
 const userRouter = Router();
-userRouter.post("/signup" ,async (req: Request, res: Response) : Promise<void> => {
+userRouter.post("/signup" ,async (req: Request, res: Response) : Promise<void> => { 
     const body = req.body
     const user = zod.object({
         firstName: zod.string(),
@@ -60,7 +60,7 @@ userRouter.post("/signin", async (req: Request, res: Response) => {
                 success: false,
                 message: "User not found"
             })
-        }
+        } 
     }
     }
     catch (error) {
