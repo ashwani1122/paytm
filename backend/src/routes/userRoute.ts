@@ -5,6 +5,7 @@ import { Request, Response } from "express"
 import  zod from  "zod"
 import jwt from "jsonwebtoken"
 import  User  from "../dbSchema/db"
+import Account from "../dbSchema/db"
 const userRouter = Router();
 userRouter.post("/signup" ,async (req: Request, res: Response) : Promise<void> => { 
     const body = req.body
@@ -15,7 +16,8 @@ userRouter.post("/signup" ,async (req: Request, res: Response) : Promise<void> =
         password: zod.string().min(8)
     })
     const userData = user.safeParse(body)
-    if(userData.success){                   
+    if(userData.success){ 
+        //@ts-ignore
         const newUser = new User({
             firstName: userData.data.firstName,
             lastName: userData.data.lastName,
@@ -44,7 +46,14 @@ userRouter.post("/signin", async (req: Request, res: Response) => {
     const { success } = usersignin.safeParse(body);
     try {
         if(success){
+            //@ts-ignore
         const user = await User.findOne({email: body.email})
+        const userId = user._id
+        //@ts-ignore
+        await Account.create({
+            userId,
+            balance: 1 + Math.random() * 1000
+        })
         if(user){
             const token = jwt.sign({
                 id : user._id,
