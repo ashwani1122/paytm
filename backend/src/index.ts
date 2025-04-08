@@ -12,8 +12,8 @@ app.use(express.json());
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/user/account", accountRouter);
 app.use("/api/v1/user/users", usersRouter); 
-app.use("/api/v1/user/balanceInquiry", balanceInquiry);
-app.use("/api/v1/user/transferMoney", transferMoney);
+app.use("/api/v1/user", balanceInquiry);
+app.use("/api/v1/user", transferMoney);
 async function main(){
     await mongoose.connect("mongodb+srv://ashwanisingh:elVZUtternK9kiNa@cluster0.vk9uv.mongodb.net/paytmdb").then(() => {
         app.listen(3000, () => {

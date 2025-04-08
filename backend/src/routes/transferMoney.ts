@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { Request, Response } from "express";
 import userMiddleware from "../middleware/userMiddleware";
-import Account from "../dbSchema/db";
+import Account from "../dbSchema/accountSchema";
 import mongoose from "mongoose";
 const transferMoney = Router();
 transferMoney.post("/transferMoney", userMiddleware, async (req: Request, res: Response): Promise<void> => {
@@ -9,8 +9,8 @@ transferMoney.post("/transferMoney", userMiddleware, async (req: Request, res: R
         session.startTransaction();
         const { amount , to } = req.body
         //@ts-ignore
-        const account = await Account.findOne({userId: req.user._id})
-        if(!account|| account.balance < amount){
+        const account = await Account.findOne({userId: req.user.id})
+        if(!account || account.balance < amount){
             session.abortTransaction();
             //@ts-ignore
             return res.status(400).json({
@@ -29,7 +29,7 @@ transferMoney.post("/transferMoney", userMiddleware, async (req: Request, res: R
             })
         }
         //@ts-ignore
-        await Account.updateOne({userId: req.user._id},{$inc: {balance: -amount}}).session(session)
+        await Account.updateOne({userId: req.user.id},{$inc: {balance: -amount}}).session(session)
         //@ts-ignore
         await Account.updateOne({userId: to},{$inc: {balance: amount}}).session(session)
         

@@ -1,11 +1,13 @@
 import { Router } from "express";
 import { Request, Response } from "express";
 import userMiddleware from "../middleware/userMiddleware";
-import Account from "../dbSchema/db";
+import Account from "../dbSchema/accountSchema";
 const accountRouter = Router();
-accountRouter.get("/account", userMiddleware, async (req: Request, res: Response) => {
+accountRouter.get("/balance", userMiddleware, async (req: Request, res: Response) => {
     //@ts-ignore
-    const account = await Account.findOne({userId: req.user._id})
+    console.log(req.user);
+    //@ts-ignore
+    const account = await Account.findOne({userId: req.user.id}).select("balance")
     res.json({
         success: true,
         account

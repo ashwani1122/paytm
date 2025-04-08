@@ -1,10 +1,10 @@
 import { Router } from "express";
 import { Request, Response } from "express";
-import User from "../dbSchema/db";
+import User from "../dbSchema/userSchema";
 const usersRouter = Router();
 usersRouter.get("/bulk", async (req: Request, res: Response) => {
     const filter = req.query.filter || "";
-    //@ts-ignore
+    console.log(filter);
     const users = await User.find({
         $or: [{
             firstName: { 

@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { Request, Response } from "express";
 import userMiddleware from "../middleware/userMiddleware";
-import User from "../dbSchema/db";
+import User from "../dbSchema/userSchema";
 const updateDetails = Router();
 
 updateDetails.put("/updateDetails", userMiddleware, async (req: Request, res: Response) => {
