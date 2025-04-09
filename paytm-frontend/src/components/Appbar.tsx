@@ -1,6 +1,6 @@
 export default function Appbar(){
     return(
-        <div className="shadow  flex justify-between items-center h-16 w-full  ">
+        <div className="  flex justify-between items-center  w-full bg-slate-400 rounded-md mt-4">
             <div className="flex  w-full items-center justify-between h-full m-2 text-2xl ">
             PayTM App
             </div>

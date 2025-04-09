@@ -6,6 +6,7 @@ import  zod from  "zod"
 import jwt from "jsonwebtoken"
 import User from "../dbSchema/userSchema"
 import Account from "../dbSchema/accountSchema"
+import { JWT_SECRET } from "../config";
 const userRouter = Router();
 userRouter.post("/signup" ,async (req: Request, res: Response) : Promise<void> => { 
     console.log("hi there");
@@ -19,7 +20,7 @@ userRouter.post("/signup" ,async (req: Request, res: Response) : Promise<void> =
     })
     const userData = user.safeParse(body)
     if(userData.success){ 
-        //@ts-ignore
+        
         const newUser = new User(userData.data)
         console.log(newUser);
         await newUser.save()
@@ -45,7 +46,7 @@ userRouter.post("/signin", async (req: Request, res: Response) => {
     const { success } = usersignin.safeParse(body);
     try {
         if(success){
-            //@ts-ignore
+        
         const user = await User.findOne({email: body.email})
         const userId = user?._id
         //@ts-ignore
@@ -56,7 +57,7 @@ userRouter.post("/signin", async (req: Request, res: Response) => {
         if(user){
             const token = jwt.sign({
                 id: user._id,
-            },"ashwani")
+            },JWT_SECRET)
             res.status(200).json({
                 success: true,
                 message: "User logged in successfully",
