@@ -36,14 +36,15 @@ export default function Dashboard(){
         })
     },[filter])
     return(
-            <div  className=" h-screen" >
-                <div  style={{backgroundImage: "url('https://cdn.svgator.com/images/2022/06/use-svg-as-background-image-particle-strokes.svg')" }} className=" ">
+            <div  className=" h-screen overflow-hidden resize-none" >
+                <div  style={{backgroundImage: "url('https://cdn.svgator.com/images/2022/06/use-svg-as-background-image-particle-strokes.svg')" }} className=" w-full h-full">
                 <div className="w-full flex ">
                 <Appbar/>
                 </div>
                 <div className=" flex ">
                     
                 <Balance  balance={
+                    //@ts-ignore
                     balance?.balance?.toFixed(2)}/>
                 </div>
                 <Input onchange={(e: any)=>{

@@ -15,7 +15,7 @@ export  default function signup(){
     return(
         <div style={{backgroundImage: "url('https://cdn.svgator.com/images/2022/06/use-svg-as-background-image-particle-strokes.svg')"}}>
         <div className="flex flex-col items-center justify-center h-screen ">
-            <div className="border shadow-lg rounded-md px-2 bg-pink-400">
+            <div className="border shadow-lg rounded-md px-2 bg-white-700">
                 <Heading Label="Signup"/>
                 <SubHeading Label="Enter your information to create an account"/>
                 <Input onchange={(e: any)=>setFirstName(e.target.value)} Label="First Name" placeholder="Enter your first name"/>

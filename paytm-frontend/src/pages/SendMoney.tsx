@@ -15,19 +15,19 @@ export default function SendMoney(){
         
        
         <div className="flex flex-col justify-center px-5  
-         items-center gap-5 shadow-lg rounded-md bg-pink-400">
+         items-center gap-5 shadow-lg rounded-md border-2 border-gray-300 bg-white-700 ">
             <Heading Label="Send Money"/>
             <div className="flex justify-center items-center pr-10 gap-1 ">
-            <span className="rounded-full h-8 w-8 bg-green-700 flex justify-center items-center text-xl text-white ">
+            <span className="rounded-full h-12 w-12 bg-green-700 flex justify-center items-center text-xl text-white ">
                 {name?.charAt(0).toUpperCase()}
             </span>
-            <span className=" flex justify-center items-center text-xl">
+            <span className=" flex justify-center items-center text-white text-xl">
                 {name?.toLocaleUpperCase()}
             </span>
             </div>
             <div>
             <input
-            className=" border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 text-sm px-3 py-1"
+            className=" border border-gray-300 rounded-md shadow-sm  focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 text-sm px-4 py-2 w-full text-black"
             placeholder="Enter Amount" onChange={(e: any)=>{
                     setAmount(e.target.value)
             }}
@@ -43,6 +43,8 @@ export default function SendMoney(){
                         'Authorization': localStorage.getItem("token")
                     }
                 })
+                
+                alert(`${amount} Rs sent to ${name}`)
             }} label="Send Money"/>
         </div>
         </div>
