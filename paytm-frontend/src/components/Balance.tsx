@@ -1,11 +1,11 @@
 export default function Balance({balance}: {balance: number}){
     return(
         <div>
-            <div className="text-2xl font-medium mt-10 text-left py-2 px-4
-            text-left py-2 px-4
+            <div className="text-xl font-medium mt-10 text-left  px-2
+            text-left  
             items-start">
             
-            Balance Rs {balance}
+            Balance in (Rs) {balance}
             </div>
         </div>
     )

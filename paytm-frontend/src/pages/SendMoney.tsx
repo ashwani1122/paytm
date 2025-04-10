@@ -10,15 +10,16 @@ export default function SendMoney(){
         const id = searchParams.get("id");
         const name = searchParams.get("name");
     return(
+        <div style={{backgroundImage: "url('https://cdn.svgator.com/images/2022/06/use-svg-as-background-image-particle-strokes.svg')"}}>
         <div key={id} className="flex flex-col h-screen justify-center items-center  px-4 py-4  rounded-md">
         
        
         <div className="flex flex-col justify-center px-5  
-         items-center gap-5 shadow-lg rounded-md bg-slate-300">
+         items-center gap-5 shadow-lg rounded-md bg-pink-400">
             <Heading Label="Send Money"/>
             <div className="flex justify-center items-center pr-10 gap-1 ">
-            <span className="rounded-full h-8 w-8 bg-green-700 flex justify-center items-center text-xl text-white">
-                A
+            <span className="rounded-full h-8 w-8 bg-green-700 flex justify-center items-center text-xl text-white ">
+                {name?.charAt(0).toUpperCase()}
             </span>
             <span className=" flex justify-center items-center text-xl">
                 {name?.toLocaleUpperCase()}
@@ -32,7 +33,7 @@ export default function SendMoney(){
             }}
             />
             </div>
-            <Button color="green" onClick={ async ()=>{
+            <Button  onClick={ async ()=>{
             await axios.post("http://localhost:3000/api/v1/user/transferMoney",{
                     amount: amount,
                     to: id
@@ -43,6 +44,7 @@ export default function SendMoney(){
                     }
                 })
             }} label="Send Money"/>
+        </div>
         </div>
         </div>
     )

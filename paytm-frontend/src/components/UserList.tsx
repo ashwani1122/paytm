@@ -8,8 +8,8 @@ export default function UserList({users}: {users: any[]}) {
             </div>
             <div className="flex flex-col  w-full justify-center items-center ">
                 {users.map((user: any) => (
-                    <div className=" text-center flex  justify-between items-center  w-full  ">
-                        <div className=" flex justify-center items-center gap-1  px-2 py-1 rounded-md">
+                    <div key={user._id} className=" text-center flex  justify-between items-center  w-full  ">
+                        <div className=" flex justify-center items-center gap-1  px-2 py-1 rounded-md text-white">
                             <div className="flex text-white  text-2xl justify-center 
                             font-light  items-center  rounded-full h-10 w-10 bg-green-400 ">
                                 {user.firstName[0].toUpperCase()}

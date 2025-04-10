@@ -4,9 +4,27 @@ import Balance from "../components/Balance";
 import Input from "../components/input";
 import UserList from "../components/UserList";
 import axios from "axios";
+
 export default function Dashboard(){
     const [ filter, setFilter] = useState("");
     const [ users, setUsers] = useState([]);
+    const [balance, setBalance ] = useState<number>(0);
+    useEffect(() => {
+        axios.get("http://localhost:3000/api/v1/user/balanceInquiry" ,
+            {
+                headers: {
+                    Authorization: localStorage.getItem("token")
+                }
+            }
+        )
+        .then((response)=>{
+            //@ts-ignore
+            setBalance(response.data.balance)
+        })
+        .catch((error)=>{
+            console.log(error)
+        })
+    },[])
     useEffect(() => {
         axios.get("http://localhost:3000/api/v1/user/bulk?filter="+filter)
         .then((response)=>{
@@ -18,12 +36,15 @@ export default function Dashboard(){
         })
     },[filter])
     return(
-            <div  className=" h-screen">
+            <div  className=" h-screen" >
+                <div  style={{backgroundImage: "url('https://cdn.svgator.com/images/2022/06/use-svg-as-background-image-particle-strokes.svg')" }} className=" ">
                 <div className="w-full flex ">
                 <Appbar/>
                 </div>
                 <div className=" flex ">
-                <Balance  balance={1000}/>
+                    
+                <Balance  balance={
+                    balance?.balance?.toFixed(2)}/>
                 </div>
                 <Input onchange={(e: any)=>{
                     setFilter(e.target.value)
@@ -31,6 +52,7 @@ export default function Dashboard(){
                 <span className=" flex flex-col justify-center items-center rounded-lg  ">
                 <UserList  users={users}/>
                 </span>
+                </div>
             </div>
     )
 }
