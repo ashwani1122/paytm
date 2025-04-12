@@ -76,4 +76,5 @@ userRouter.post("/signin", async (req: Request, res: Response) => {
         console.log(error)
     }
 })
+
 export default userRouter
