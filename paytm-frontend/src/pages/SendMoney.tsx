@@ -27,7 +27,7 @@ export default function SendMoney(){
             </div>
             <div>
             <input
-            className=" border border-gray-300 rounded-md shadow-sm  focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 text-sm px-4 py-2 w-full text-black"
+            className=" border border-gray-300 rounded-md shadow-sm  focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 text-sm px-4 py-2 w-full text-black font-bold"
             placeholder="Enter Amount" onChange={(e: any)=>{
                     setAmount(e.target.value)
             }}
